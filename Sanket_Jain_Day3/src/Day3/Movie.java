@@ -4,11 +4,7 @@ public class Movie implements MovieInterface{
 
 	
     private String movieID;
-	
-
 	private String movieName;
-	
-
 	private String producedBy;
 	private String directedBy;
 	private double duration;
@@ -17,12 +13,12 @@ public class Movie implements MovieInterface{
 	static int movieCount = 0;
 	
 	public Movie(String movieName, String producedBy) {
-		
+		movieCount++;
 		this.movieName = movieName;
 		this.producedBy = producedBy;
 	}
 	public Movie(String movieName, String producedBy, String directedBy, double duration, int year, String catagory) {
-	
+		movieCount++;
 		this.movieName = movieName;
 		this.producedBy = producedBy;
 		this.directedBy = directedBy;
@@ -58,7 +54,7 @@ public class Movie implements MovieInterface{
 	
 	@Override
 	public String toString() {
-		movieCount++;
+		
 		return "Movie [movieName=" + movieName + ", producedBy=" + producedBy + ", directedBy=" + directedBy
 				+ ", duration=" + duration + ", year=" + year + ", catagory=" + catagory + "Total Movie Count : "+movieCount+" MovieId : "+getMovieID()+" ]";
 	}

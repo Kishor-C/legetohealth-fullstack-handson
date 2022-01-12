@@ -1,6 +1,6 @@
 package Day3;
 
-public class SpecialMovie extends Movie implements MovieInterface, InternationalMovieInterface{
+public class SpecialMovie extends Movie implements MovieInterface, SpecialMovieInterface{
 	
 	private String soundEffect;
 	private String visualEffect;
@@ -38,17 +38,7 @@ public class SpecialMovie extends Movie implements MovieInterface, International
 				+ super.toString() + "]";
 	}
 
-	@Override
-	public String getCountryName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public String getLanguage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 
