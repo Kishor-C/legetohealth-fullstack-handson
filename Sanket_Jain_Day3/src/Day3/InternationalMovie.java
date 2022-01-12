@@ -26,8 +26,8 @@ public class InternationalMovie extends Movie implements MovieInterface , Intern
 	}
 	@Override
 	public String toString() {
-		return "InternationalMovie [countryName=" + countryName + ", Language=" + Language + ", toString()="
-				+ super.toString() + "]";
+		return  " Movie Details : "+super.toString() +"InternationalMovie [countryName=" + countryName + ", Language=" + Language + ", toString()="
+				+ "]";
 	}
 	@Override
 	public String getSoundEffect() {

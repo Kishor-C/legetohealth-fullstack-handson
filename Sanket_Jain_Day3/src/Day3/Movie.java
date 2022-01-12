@@ -10,15 +10,17 @@ public class Movie implements MovieInterface{
 	private double duration;
 	private int year;
 	private String catagory;
-	static int movieCount = 0;
-	
-	public Movie(String movieName, String producedBy) {
+	static int movieCount;
+	{
 		movieCount++;
+	}
+	public Movie(String movieName, String producedBy) {
+		
 		this.movieName = movieName;
 		this.producedBy = producedBy;
 	}
 	public Movie(String movieName, String producedBy, String directedBy, double duration, int year, String catagory) {
-		movieCount++;
+		
 		this.movieName = movieName;
 		this.producedBy = producedBy;
 		this.directedBy = directedBy;
@@ -56,7 +58,7 @@ public class Movie implements MovieInterface{
 	public String toString() {
 		
 		return "Movie [movieName=" + movieName + ", producedBy=" + producedBy + ", directedBy=" + directedBy
-				+ ", duration=" + duration + ", year=" + year + ", catagory=" + catagory + "Total Movie Count : "+movieCount+" MovieId : "+getMovieID()+" ]";
+				+ ", duration=" + duration + " hours , year=" + year + ", catagory=" + catagory + " Total Movie Count : "+movieCount+" MovieId : "+getMovieID()+" ]";
 	}
 	public static void showDetails(Movie m) {
 		System.out.println(m.toString()+"\n");

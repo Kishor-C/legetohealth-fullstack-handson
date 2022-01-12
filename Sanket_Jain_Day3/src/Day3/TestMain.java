@@ -20,7 +20,7 @@ public class TestMain {
 		InternationalMovie im1 = new InternationalMovie("DHOOM", "YRF","Aditya Chopda", 2.30,2007,"Action","dolby","UTV");
 		System.out.println(im1.toString());
 		System.out.println("=======================Q.1 Create International Movie Object with 2 Parameters  ==============\n");
-		InternationalMovie im2 = new InternationalMovie("DHOOM", "YRF","dolby","UTV");
+		InternationalMovie im2 = new InternationalMovie("DHOOM1", "YRF","dolby","UTV");
 		System.out.println(im2.toString());
 		System.out.println("=======================Q.1 Create Special Movie Object with 7 Parameters  ==============\n");
 		SpecialMovie sm1 = new SpecialMovie("MI6", "Colambia","Hardward", 2.30,2017,"Action","US","English");

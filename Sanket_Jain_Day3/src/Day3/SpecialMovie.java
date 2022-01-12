@@ -34,8 +34,8 @@ public class SpecialMovie extends Movie implements MovieInterface, SpecialMovieI
 	}
 	@Override
 	public String toString() {
-		return "SpecialMovie [soundEffect=" + soundEffect + ", visualEffect=" + visualEffect + ", toString()="
-				+ super.toString() + "]";
+		return "Movie details : "+super.toString() +"SpecialMovie [soundEffect=" + soundEffect + ", visualEffect=" + visualEffect + ", toString()="
+				+  "]";
 	}
 
 
