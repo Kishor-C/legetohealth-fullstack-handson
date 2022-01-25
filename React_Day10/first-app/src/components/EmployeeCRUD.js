@@ -44,7 +44,63 @@ render(){
     </div>);
 }
 }
-
+export class EmployeeDelete extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {employees:[],_id:''}
+    }
+    handleRefresh = (event)=> {
+        let url = 'http://localhost:9090/user';
+        axios.get(url)
+        .then((response)=>this.setState({employees:response.data}))
+        .catch((err)=>console.log(err));
+    }
+    handleDelete = (_id, e)=> {
+              
+        let url = `http://localhost:9090/user/${_id}`;
+        axios.delete(url)
+        .then(res => {  
+            console.log(res);  
+            console.log(res.data);
+        })  
+    }
+    render(){
+        return(<div>
+            <div className='row-5'>
+            <h2>Employee List :   <button onClick={this.handleRefresh} className ='btn btn-outline-info'>Refresh</button></h2>
+            
+            </div>
+            <table className='table table-sm table-dark table-hover'>
+            <thead>
+                <tr >
+                    <th >
+                    #S.No.
+                    </th>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Salary
+                    </th>
+                    <th>
+                        Delete Button
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {this.state.employees.map((item, index)=> <tr className='row-sm' key={item._id}><td>{index + 1}</td><td>{item._id}</td><td>{item.name}</td><td>{item.salary}</td><td><button className='btn btn-danger' onClick={(e) => this.handleDelete(item._id, e)}>Delete</button></td>
+                </tr>)}
+            </tbody>
+    
+            </table>
+    
+        </div>);
+    }
+    }
+    
 export class EmployeeStore extends React.Component{
     constructor(props)
     {

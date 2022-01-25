@@ -57,10 +57,12 @@ app.get('/user/:id',(request,response)=>{
 });
 app.post('/user',(request,response)=>{
         let user = request.body;
+        let id = parseInt(user._id);
+        console.log(id);
         MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
             if(err) throw err;
             {
-                var data= {_id:user._id,name:user.name,salary:user.salary};
+                var data= {_id:id,name:user.name,salary:user.salary};
                 let myDB = client.db('mydb');  
                    myDB.collection("user").insertOne(data,(err,res)=>
                    {
@@ -73,6 +75,7 @@ app.post('/user',(request,response)=>{
 });
 app.put('/user/:_id/:name/:salary',(request,response)=>{
     let id = parseInt(request.params._id);
+    console.log(id);
     let name = request.params.name;
     let salary = parseInt(request.params.salary);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
@@ -87,8 +90,9 @@ app.put('/user/:_id/:name/:salary',(request,response)=>{
              });
         });
 });
-app.delete('/user/:id',(request,response)=>{
-    let id = parseInt(request.params.id);
+app.delete('/user/:_id',(request,response)=>{
+    let id = parseInt(request.params._id);
+    console.log(id);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
         if(err) throw err;
             let myDB = client.db('mydb');
