@@ -1,10 +1,13 @@
 let app= require('express')();
+let cors = require('cors')
 let MongoClient= require('mongodb').MongoClient;
 let dbURL="mongodb://localhost:27017";
 let port =9090;
+let bodyParser = require('body-parser');
 app.listen(port, () => console.log(`Node server running in ${port}`));
 app.use(cors({origin:'*'}));
-app.get('/users',(request,response)=>{
+app.use([bodyParser.json(),bodyParser.text()]);
+app.get('/user',(request,response)=>{
    // let id = parseInt(request.params.id);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
        if(!err){
@@ -53,25 +56,26 @@ app.get('/user/:id',(request,response)=>{
     });
 });
 app.post('/user',(request,response)=>{
-        let id = parseInt(request.query.id);
-        let name = request.query.name;
-        let salary = parseInt(request.query.salary);
+        let user = request.body;
+        let id = parseInt(user._id);
+        console.log(id);
         MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
             if(err) throw err;
             {
-                var data= {_id:id,name:name,salary:salary};
+                var data= {_id:id,name:user.name,salary:user.salary};
                 let myDB = client.db('mydb');  
                    myDB.collection("user").insertOne(data,(err,res)=>
                    {
                        if(err) throw err ; 
-                    response.send(`1 Document Stored Successfully !!! ${res.insertedCount}`);
+                    response.send(`1 Document Stored Successfully !!! ${JSON.stringify(data)}`);
                     client.close();
                    });
             }
         });
 });
-app.put('/user/:id/:name/:salary',(request,response)=>{
-    let id = parseInt(request.params.id);
+app.put('/user/:_id/:name/:salary',(request,response)=>{
+    let id = parseInt(request.params._id);
+    console.log(id);
     let name = request.params.name;
     let salary = parseInt(request.params.salary);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
@@ -86,8 +90,9 @@ app.put('/user/:id/:name/:salary',(request,response)=>{
              });
         });
 });
-app.delete('/user/:id',(request,response)=>{
-    let id = parseInt(request.params.id);
+app.delete('/user/:_id',(request,response)=>{
+    let id = parseInt(request.params._id);
+    console.log(id);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
         if(err) throw err;
             let myDB = client.db('mydb');

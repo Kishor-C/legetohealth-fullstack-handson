@@ -1,0 +1,10 @@
+<p>parent works!</p>
+<div>
+
+    <app-child [username]= 'firstname'></app-child>
+    <hr/>
+<span>Itrating the Child</span>
+    <div *ngFor='let u of users'>
+    <app-child [username] = 'u'></app-child>
+    </div>
+</div>
