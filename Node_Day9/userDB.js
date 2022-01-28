@@ -21,7 +21,7 @@ app.get('/user',(request,response)=>{
             }, ()=> { 
                 if(x==0)
                 {
-                    response.json({error:"No records found"});
+                    response.status(404).json({error:"No records found"});
                 }
                 else{
                     response.json(array);
@@ -37,18 +37,15 @@ app.get('/user/:id',(request,response)=>{
         if(!err){
             let myDB = client.db('mydb');
             let doc = myDB.collection("user").find({_id:id});
-            let array = [] ;
+           
             let x=0;
             doc.forEach((record)=>{
-                array.push(record);
+                 response.json(record);
                 x++;
             }, ()=> { 
                 if(x==0)
                 {
-                    response.json({error:"No records found"});
-                }
-                else{
-                    response.json(array);
+                    response.status(404).json({error:"No records found"});
                 }
                 client.close();
             });
