@@ -9,7 +9,9 @@ import { EmployeeService } from '../employee.service';
 })
 export class GetUserComponent implements OnInit {
 
-  constructor(private _builder:FormBuilder, private _service : EmployeeService) { }
+  constructor(private _builder:FormBuilder, private _service : EmployeeService) {
+    this.handleClick();
+   }
 
   ngOnInit(): void {
   }

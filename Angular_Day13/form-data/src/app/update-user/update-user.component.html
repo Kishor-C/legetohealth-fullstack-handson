@@ -1,1 +1,14 @@
-<p>update-user works!</p>
+<div>
+    <h3 class="text-info">Update User by Id : </h3>
+    <form [formGroup]='employee' (ngSubmit)="handleClick()" >
+        <span>Enter User Id :
+        <input type="number" formControlName='_id'/> </span>
+        <span>Enter Username :
+        <input type="text" formControlName='name'/> </span>
+        <span>Enter User Salary :
+        <input type="number" formControlName='salary'/>
+    </span>
+    <input type="submit" value="Update User" class="btn btn-outline-success"/>
+    </form>
+    <div *ngIf='emp' class="text-success">Hello {{emp.name}}, Your Salary is {{emp.salary}}</div>
+</div>

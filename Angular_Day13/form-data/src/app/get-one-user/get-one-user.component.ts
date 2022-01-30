@@ -13,11 +13,11 @@ export class GetOneUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-employee = this._builder.group({ id:[],name:[],salary:[]});
+employee = this._builder.group({ _id:[],name:[],salary:[]});
 emp : any=undefined;
 errorMessage:any=undefined;
 handleClick() :void{
-let id = this.employee.controls['id'].value;
+let id = this.employee.controls['_id'].value;
 this._service.fetchEmployee(id).subscribe(res=>{
   this.emp=res;
   console.log(this.emp);

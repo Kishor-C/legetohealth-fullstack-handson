@@ -1,1 +1,11 @@
-<p>delete-user works!</p>
+<div>
+    <h3 class="text-info">Delete User by Id : </h3>
+    <form [formGroup]='employee' (ngSubmit)="handleClick()" >
+        <span>Enter User Id :
+        <input type="number" formControlName='_id'/>
+    </span>
+    <input type="submit" value="Delete User" class="btn btn-outline-info"/>
+    </form>
+    <div *ngIf='emp' class="text-success">Hello {{emp.name}}, Your Salary is {{emp.salary}}</div>
+    <!-- <div *ngIf='errorMessage' class="text-danger">{{errorMessage}}</div> -->
+</div>

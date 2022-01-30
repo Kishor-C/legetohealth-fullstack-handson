@@ -27,4 +27,8 @@ export class EmployeeService {
     let url =`${this.baseUrl}/user/${userId}`;
     return this._client.get(url);
   }
+  deleteEmployee(userId : number):Observable<any>{
+    let url =`${this.baseUrl}/user/${userId}`;
+    return this._client.delete(url);
+  }
 }

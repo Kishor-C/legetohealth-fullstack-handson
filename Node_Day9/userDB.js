@@ -33,14 +33,15 @@ app.get('/user',(request,response)=>{
 });
 app.get('/user/:id',(request,response)=>{
     let id = parseInt(request.params.id);
+    console.log(id);
     MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
         if(!err){
             let myDB = client.db('mydb');
             let doc = myDB.collection("user").find({_id:id});
-           
             let x=0;
             doc.forEach((record)=>{
                  response.json(record);
+                 console.log(record);
                 x++;
             }, ()=> { 
                 if(x==0)
@@ -56,10 +57,12 @@ app.post('/user',(request,response)=>{
         let user = request.body;
         let id = parseInt(user._id);
         console.log(id);
+        let salary = parseInt(user.salary);
+        console.log(user);
         MongoClient.connect(dbURL,{useNewUrlParser:true},(err,client)=>{
             if(err) throw err;
             {
-                var data= {_id:id,name:user.name,salary:user.salary};
+                var data= {_id:id,name:user.name,salary:salary};
                 let myDB = client.db('mydb');  
                    myDB.collection("user").insertOne(data,(err,res)=>
                    {
