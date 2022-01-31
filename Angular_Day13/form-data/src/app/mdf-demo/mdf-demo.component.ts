@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-mdf-demo',
@@ -8,13 +10,20 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class MdfDemoComponent  {
 
-  constructor(private _builder:FormBuilder) { }
+  constructor(private _builder:FormBuilder, private _router : Router) { }
     profile=this._builder.group({
     firstname:['', Validators.compose([Validators.required, Validators.minLength(3)])],
     lastname:['', Validators.compose([Validators.required, Validators.minLength(2)])]
   });
   handleSubmit():void{
-    console.log(this.profile.value);
+    let firstname = this.profile.controls['firstname'].value;
+    if(firstname=='Alex')
+    {
+    sessionStorage.setItem('user', firstname);
+      this._router.navigate(['Success', firstname]);
+    }else{
+      this._router.navigate(['mdf']);
     this.profile.reset();
+    }
   }
 }
