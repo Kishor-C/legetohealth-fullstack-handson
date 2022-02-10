@@ -9,24 +9,24 @@ import { Component, OnInit } from '@angular/core';
 
 export class ModelComponentComponent implements OnInit {
   
- private id:number;
- private firstname?:string;
- private username?:string;
- constructor(id:number,firstname:string,username:string) {
-   this.id=id;
-   this.firstname=firstname;
-   this.username=username;
-  }
+//  private id:number;
+//  private firstname?:string;
+//  private username?:string;
+//  constructor(id:number,firstname:string,username:string) {
+//    this.id=id;
+//    this.firstname=firstname;
+//    this.username=username;
+//   }
 
 
 
 
-  getUsername():string{
-    return `${this.firstname} ${this.username}`;
-  }
+  // getUsername():string{
+  //   return `${this.firstname} ${this.username}`;
+  // }
   
 
   ngOnInit(): void {
   }
-
+constructor(){}
 }
