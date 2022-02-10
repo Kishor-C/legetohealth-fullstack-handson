@@ -17,6 +17,38 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EmpGuard } from './emp.guard';
+import { HomeComponent } from './home/home.component';
+
+
+//common
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
+import { LogoutComponent } from './logout/logout.component';
+import { RaiseticketComponent } from './raiseticket/raiseticket.component';
+//Admin
+import { AdminComponentComponent } from './admin/admin-component/admin-component.component';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { DeleteProductComponent } from './admin/delete-product/delete-product.component';
+import { UpdateProductComponent } from './admin/update-product/update-product.component';
+import { ViewRequestsComponent } from './admin/view-requests/view-requests.component';
+import { AddEmployeeComponent } from './admin/add-employee/add-employee.component';
+import { DeleteEmployeeComponent } from './admin/delete-employee/delete-employee.component';
+import { GenerateReportComponent } from './admin/generate-report/generate-report.component';
+import { SelectItemsComponent } from './user/cart/select-items/select-items.component';
+import { DeleteItemsComponent } from './user/cart/delete-items/delete-items.component';
+import { ViewItemsComponent } from './user/cart/view-items/view-items.component';
+import { CheckOutComponent } from './user/cart/check-out/check-out.component';
+import { OrderStatusComponent } from './user/order-status/order-status.component';
+import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { FundsComponent } from './user/funds/funds.component';
+//Employee
+import { EmployeeComponentComponent } from './employee/employee-component/employee-component.component';
+import { SendRequestComponent } from './employee/send-request/send-request.component';
+import { UpdateOrderStatusComponent } from './employee/update-order-status/update-order-status.component';
+import { UnlockUserComponent } from './employee/unlock-user/unlock-user.component';
+import { PageNotFoundComponent } from './helper/page-not-found/page-not-found.component';
+import { ExceptionComponent } from './helper/exception/exception.component';
+import { ModelComponentComponent } from './model/model-component/model-component.component';
 
 let routeConfig:Routes=[{path:'',component:GetUserComponent},
 {path:'FetchAll',component:GetUserComponent},
@@ -42,7 +74,34 @@ let routeConfig:Routes=[{path:'',component:GetUserComponent},
     SuccessComponent,
     DashboardComponent,
     ProfileComponent,
-    SettingsComponent
+    SettingsComponent,
+    HomeComponent,
+    AdminComponentComponent,
+    EmployeeComponentComponent,
+    SigninComponent,
+    SignupComponent,
+    LogoutComponent,
+    RaiseticketComponent,
+    AddProductComponent,
+    DeleteProductComponent,
+    UpdateProductComponent,
+    ViewRequestsComponent,
+    AddEmployeeComponent,
+    DeleteEmployeeComponent,
+    GenerateReportComponent,
+    SelectItemsComponent,
+    DeleteItemsComponent,
+    ViewItemsComponent,
+    CheckOutComponent,
+    OrderStatusComponent,
+    EditProfileComponent,
+    FundsComponent,
+    SendRequestComponent,
+    UpdateOrderStatusComponent,
+    UnlockUserComponent,
+    PageNotFoundComponent,
+    ExceptionComponent,
+    ModelComponentComponent
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,
