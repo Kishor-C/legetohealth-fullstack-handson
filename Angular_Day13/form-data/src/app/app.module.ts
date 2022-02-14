@@ -18,10 +18,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { EmpGuard } from './emp.guard';
 import { HomeComponent } from './home/home.component';
+import { CartComponentComponent } from './user/cart/cart-component';
 
 
 //common
-import { SigninComponent } from './signin/signin.component';
+//import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { LogoutComponent } from './logout/logout.component';
 import { RaiseticketComponent } from './raiseticket/raiseticket.component';
@@ -40,6 +41,7 @@ import { ViewItemsComponent } from './user/cart/view-items/view-items.component'
 import { CheckOutComponent } from './user/cart/check-out/check-out.component';
 import { OrderStatusComponent } from './user/order-status/order-status.component';
 import { EditProfileComponent } from './user/edit-profile/edit-profile.component';
+import { EEditProfileComponent } from './employee/edit-profile/edit-profile.component';
 import { FundsComponent } from './user/funds/funds.component';
 //Employee
 import { EmployeeComponentComponent } from './employee/employee-component/employee-component.component';
@@ -49,20 +51,99 @@ import { UnlockUserComponent } from './employee/unlock-user/unlock-user.componen
 import { PageNotFoundComponent } from './helper/page-not-found/page-not-found.component';
 import { ExceptionComponent } from './helper/exception/exception.component';
 import { ModelComponentComponent } from './model/model-component/model-component.component';
+import { LoginComponent } from './login/login.component';
+import { UserComponentComponent } from './user/user-component/user-component.component';
+// import { AdminComponent } from './admin/admin/admin.component';
+// import { EmployeeComponent } from './employee/employee/employee.component';
+import { AdminGuard } from './guard/admin.guard';
+import { EmployeeGuard } from './guard/employee.guard';
+import { UserGuard } from './guard/user.guard';
+import { SigninComponent } from './signin/signin.component';
+import { AdminComponent } from './admin/admin/admin.component';
+import { EmployeeComponent } from './employee/employee/employee.component';
+import { CartGuard } from './guard/cart.guard';
 
-let routeConfig:Routes=[{path:'',component:GetUserComponent},
+
+
+let routeConfig:Routes=[
+  {path:'',component:PageNotFoundComponent},
+  {path:'',redirectTo:'FetchAll',pathMatch:'full'},
+{path:'',component:GetUserComponent},
 {path:'FetchAll',component:GetUserComponent},
+{path:'Signup' , component!:SignupComponent},
+{path:'Raise',component:RaiseticketComponent},
+{path:'addemployee' , component!:AddEmployeeComponent},
 {path:'FetchByID',component:GetOneUserComponent},
 {path:'AddUser',component:AddUserComponent},
+{path:'Login',component:LoginComponent},
 {path:'UpdateUser',component:UpdateUserComponent},
+{path:'UserLogin',component!:SigninComponent},
+{path:'AdminLogin',component:AdminComponent},
+{path:'EmployeeLogin',component:EmployeeComponent},
 {path:'DeleteById',component:DeleteUserComponent},
 {path:'mdf',component:MdfDemoComponent},
+// {path:'UpdateProduct',component:UpdateProductComponent},
+{path:'AddProducts',component:AddProductComponent},
+{path:'DeleteProducts',component:DeleteProductComponent},
+{path:'ViewRequest',component:ViewRequestsComponent},
+{path:'AddEmployee',component:AddEmployeeComponent},
+{path:'DeleteEmployee',component:DeleteEmployeeComponent},
+{path:'GenerateReport',component:GenerateReportComponent},
+{path:'Logout',component:LogoutComponent},
+
+
+{path:'Home',component:HomeComponent},
+
+//Admin Features 
+{path:'Admin/:un',component:AdminComponentComponent,canActivate:[AdminGuard],children:[
+{path:'UpdateProduct',component:UpdateProductComponent},
+{path:'AddProducts',component:AddProductComponent},
+{path:'DeleteProducts',component:DeleteProductComponent},
+{path:'ViewRequest',component:ViewRequestsComponent},
+{path:'AddEmployee',component:AddEmployeeComponent},
+{path:'DeleteEmployee',component:DeleteEmployeeComponent},
+{path:'GenerateReport',component:GenerateReportComponent},
+{path:'Logout',component:LogoutComponent}]},
+
+
+
+{path:'User/:email',component:UserComponentComponent,canActivate:[UserGuard],children:[
+  {path:'',component:EditProfileComponent},
+  {path:'Order',component:OrderStatusComponent},
+{path:'EditProfile',component:EditProfileComponent},
+{path:'Funds',component:FundsComponent},
+{path:'Cart',component:CartComponentComponent,canActivate:[CartGuard],children:[
+  // {path:'',component:CartComponentComponent,pathMatch:'full'},
+  {path:'Checkout',component:CheckOutComponent},
+  {path:'ViewItems',component:ViewItemsComponent},
+  {path:'UpdateItems',component: DeleteItemsComponent},
+  {path:'DeleteItems',component:DeleteItemsComponent},//UpdateItems
+  {path:'SelectItems',component:SelectItemsComponent}
+]},
+]},
+// send request
+// update order status
+// unlock users
+// edit profile
+// logout
+{path:'Employee/:id',component:EmployeeComponentComponent,canActivate:[EmployeeGuard],
+children:
+[{path:'',component:DashboardComponent},
+{path:'SendRequest',component:DashboardComponent},
+{path:'Funds',component:FundsComponent},
+{path:'UpdateOrder',component:ProfileComponent},
+{path:'UnlockUsers',component:SettingsComponent},
+{path:'EditProfile',component:EEditProfileComponent}
+]},
+
 {path:'Success/:un',component:SuccessComponent,canActivate:[EmpGuard],children:[{path:'',component:DashboardComponent},
 {path:'dashboard',component:DashboardComponent},
-{path:'settings',component:SettingsComponent},
-{path:'profiles',component:ProfileComponent}]}]
+{path:'profiles',component:ProfileComponent},{path:'settings',component:SettingsComponent}]
+}
+]
 @NgModule({
   declarations: [
+  
     AppComponent,
     TdfDemoComponent,
     MdfDemoComponent,
@@ -78,7 +159,7 @@ let routeConfig:Routes=[{path:'',component:GetUserComponent},
     HomeComponent,
     AdminComponentComponent,
     EmployeeComponentComponent,
-    SigninComponent,
+  
     SignupComponent,
     LogoutComponent,
     RaiseticketComponent,
@@ -101,7 +182,14 @@ let routeConfig:Routes=[{path:'',component:GetUserComponent},
     UnlockUserComponent,
     PageNotFoundComponent,
     ExceptionComponent,
-    ModelComponentComponent
+    ModelComponentComponent,
+    LoginComponent,
+    SigninComponent,
+    EmployeeComponent,
+    AdminComponent,
+    UserComponentComponent,
+    CartComponentComponent,
+    EEditProfileComponent,
   ],
   imports: [
     BrowserModule, FormsModule , ReactiveFormsModule, HttpClientModule,

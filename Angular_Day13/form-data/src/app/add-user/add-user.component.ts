@@ -13,7 +13,10 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-employee = this._builder.group({ _id:[],name:[],salary:[]});
+employee = this._builder.group(
+  { 
+    _id:[],name:[],salary:[]
+  });
 emp : any=undefined;
 errorMessage:any=undefined;
 handleClick() :void{
